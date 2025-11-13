@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VAVI Control Panel</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            text-align: center;
+            padding-top: 80px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            animation: slideIn 1s ease-out;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 15px 30px;
+            margin: 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        #status {
+            font-size: 18px;
+            margin-top: 30px;
+            color: #ccc;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>VAVI - Voice Assistant for the Visually Impaired</h1>
+
+    <button onclick="startAssistant()">Start Assistant</button>
+    <button onclick="stopAssistant()">Stop Assistant</button>
+
+    <div id="status">Status: Idle</div>
+
+    <script>
+        function startAssistant() {
+            fetch('/start', { method: 'POST' })
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('status').innerText = 'Status: ' + data.status;
+                });
+        }
+
+        function stopAssistant() {
+            fetch('/stop', { method: 'POST' })
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('status').innerText = 'Status: ' + data.status;
+                });
+        }
+    </script>
+</body>
+</html>

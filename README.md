@@ -93,8 +93,4 @@ python3 main.py
 ## 👨‍💻 Author
 
 **Anubhav Chaudhary**
-CSE 4th Year – AI/ML & Computer Vision Project
 
----
-
-If you want, I can add badges, screenshots, or GitHub setup instructions to this README as well.
